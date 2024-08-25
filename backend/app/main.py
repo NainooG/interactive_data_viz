@@ -5,6 +5,7 @@ import geopandas as gpd
 import requests
 from io import StringIO
 import os
+import uvicorn
 
 app = FastAPI()
 
@@ -55,5 +56,4 @@ async def map_data():
     return data
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
