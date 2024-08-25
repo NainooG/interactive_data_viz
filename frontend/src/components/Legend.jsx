@@ -10,7 +10,7 @@ const Legend = () => {
         visibility: 'visible',
         zIndex: 1000,
         color: 'black',
-        width: '300px',  // Increased width for more space
+        width: '250px',  // Increased width for more space
       }}
     >
       <div className="text-center mb-4 font-bold text-lg" style={{ color: 'black' }}>Bivariate Legend</div>
@@ -24,16 +24,16 @@ const Legend = () => {
         
         {/* Color grid */}
         <div className="flex flex-col">
-          <div className="grid grid-cols-3 grid-rows-3 gap-0">
-            <div className="bg-[#3b4994] w-10 h-10"></div>
-            <div className="bg-[#8c62aa] w-10 h-10"></div>
-            <div className="bg-[#be64ac] w-10 h-10"></div>
-            <div className="bg-[#5698b9] w-10 h-10"></div>
-            <div className="bg-[#a5add3] w-10 h-10"></div>
-            <div className="bg-[#dfb0d6] w-10 h-10"></div>
-            <div className="bg-[#5ac8c8] w-10 h-10"></div>
-            <div className="bg-[#ace4e4] w-10 h-10"></div>
-            <div className="bg-[#e8e8e8] w-10 h-10"></div>
+          <div className="grid grid-cols-3 grid-rows-3">
+            <div className="bg-[#3b4994] w-[50px] h-[50px]" />
+            <div className="bg-[#8c62aa] w-[50px] h-[50px]" />
+            <div className="bg-[#be64ac] w-[50px] h-[50px]" />
+            <div className="bg-[#5698b9] w-[50px] h-[50px]" />
+            <div className="bg-[#a5add3] w-[50px] h-[50px]" />
+            <div className="bg-[#dfb0d6] w-[50px] h-[50px]" />
+            <div className="bg-[#5ac8c8] w-[50px] h-[50px]" />
+            <div className="bg-[#ace4e4] w-[50px] h-[50px]" />
+            <div className="bg-[#e8e8e8] w-[50px] h-[50px]" />
           </div>
 
           {/* X-axis label below the grid */}
