@@ -1,12 +1,8 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
+import MapComponent from '../components/MapComponent';
 
-// Dynamically import the MapComponent to avoid SSR issues with Leaflet
-const MapComponent = dynamic(() => import('../components/MapComponent'), { ssr: false });
 
-const HomePage = () => {
+function App() {
   return (
     <div className="min-h-screen flex flex-col items-center">
       <header className="w-full bg-gray-800 text-white p-4 text-center">
@@ -19,6 +15,6 @@ const HomePage = () => {
 
     </div>
   );
-};
+}
 
-export default HomePage;
+export default App;

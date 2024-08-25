@@ -9,8 +9,9 @@ function MapComponent() {
   const [geoData, setGeoData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/map-data')
+    axios.get('http://localhost:8000/api/map-data')
       .then(response => {
+        console.log(response.data);  // Log the data to ensure it's being fetched correctly
         setGeoData(response.data);
       })
       .catch(error => {
@@ -19,7 +20,7 @@ function MapComponent() {
   }, []);
 
   return (
-    <div className="relative h-screen">
+    <div className="relative h-screen w-screen">
       <MapContainer center={[47.5, -120]} zoom={6} className="h-full w-full">
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -32,3 +33,4 @@ function MapComponent() {
 }
 
 export default MapComponent;
+
