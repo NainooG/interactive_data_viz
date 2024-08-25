@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
+import Legend from './Legend';  // Import the Legend component
 
 function MapComponent() {
   const [geoData, setGeoData] = useState(null);
@@ -10,7 +11,7 @@ function MapComponent() {
   useEffect(() => {
     axios.get('http://localhost:8000/api/map-data')
       .then(response => {
-        const geojson = JSON.parse(response.data);  // Ensure the JSON is correctly parsed
+        const geojson = JSON.parse(response.data);
         setGeoData(geojson);
       })
       .catch(error => {
@@ -22,7 +23,6 @@ function MapComponent() {
     return null; // Prevent SSR issues
   }
 
-  // Function to style each feature based on its properties
   const style = (feature) => {
     return {
       fillColor: feature.properties.color || '#FFEDA0',  // Default color if none is provided
@@ -41,6 +41,7 @@ function MapComponent() {
         />
         {geoData && <GeoJSON data={geoData} style={style} />}
       </MapContainer>
+      <Legend />  {/* Add the Legend component here */}
     </div>
   );
 }

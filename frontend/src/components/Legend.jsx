@@ -3,7 +3,10 @@ import React from 'react';
 
 const Legend = () => {
   return (
-    <div className="absolute bottom-10 left-10 bg-white p-4 border-2 border-gray-300 rounded shadow-lg">
+    <div 
+      className="absolute bottom-10 left-10 bg-white p-4 border-2 border-gray-300 rounded shadow-lg z-50"
+      style={{ display: 'block', visibility: 'visible', zIndex: 1000 }}
+    >
       <div className="text-center mb-2 font-bold">Bivariate Legend</div>
       <div className="flex">
         <div className="flex flex-col">
