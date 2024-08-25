@@ -11,7 +11,6 @@ function MapComponent() {
     axios.get('http://localhost:8000/api/map-data')
       .then(response => {
         const geojson = JSON.parse(response.data);  // Ensure the JSON is correctly parsed
-        console.log(geojson);  // Debug: Print the GeoJSON object to ensure it's valid
         setGeoData(geojson);
       })
       .catch(error => {
@@ -23,13 +22,24 @@ function MapComponent() {
     return null; // Prevent SSR issues
   }
 
+  // Function to style each feature based on its properties
+  const style = (feature) => {
+    return {
+      fillColor: feature.properties.color || '#FFEDA0',  // Default color if none is provided
+      weight: 2,
+      opacity: 1,
+      color: 'blue',  // Border color
+      fillOpacity: 0.7
+    };
+  };
+
   return (
     <div className="relative h-screen w-screen">
       <MapContainer center={[47.5, -120]} zoom={6} className="h-full w-full">
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {geoData && <GeoJSON data={geoData} />}
+        {geoData && <GeoJSON data={geoData} style={style} />}
       </MapContainer>
     </div>
   );
