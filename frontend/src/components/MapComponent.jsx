@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
-import Legend from './Legend';
 
 function MapComponent() {
   const [geoData, setGeoData] = useState(null);
@@ -11,13 +10,18 @@ function MapComponent() {
   useEffect(() => {
     axios.get('http://localhost:8000/api/map-data')
       .then(response => {
-        console.log(response.data);  // Log the data to ensure it's being fetched correctly
-        setGeoData(response.data);
+        const geojson = JSON.parse(response.data);  // Ensure the JSON is correctly parsed
+        console.log(geojson);  // Debug: Print the GeoJSON object to ensure it's valid
+        setGeoData(geojson);
       })
       .catch(error => {
         console.error('Error fetching the GeoJSON data:', error);
       });
   }, []);
+
+  if (typeof window === 'undefined') {
+    return null; // Prevent SSR issues
+  }
 
   return (
     <div className="relative h-screen w-screen">
@@ -27,10 +31,8 @@ function MapComponent() {
         />
         {geoData && <GeoJSON data={geoData} />}
       </MapContainer>
-      <Legend />
     </div>
   );
 }
 
 export default MapComponent;
-
